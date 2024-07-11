@@ -14,6 +14,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: whitesmoke;
         }
 
         .preloader {
@@ -21,6 +22,7 @@
             height: 100vh;
             z-index: 99999;
             position: fixed;
+
             top: 0;
             left: 0;
             width: 100vw;
@@ -33,7 +35,7 @@
             display: none;
         }
 
-        img {
+        .preloader img {
             width: 200px;
             height: 200px;
             animation: animate 4s infinite;
@@ -48,29 +50,103 @@
                 transform: scale(50px)
             }
         }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+        }
+
+        .navbar.sticky {
+            padding: 10px;
+            box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
+            transition: 0.5s;
+        }
+
+        .section {
+            height: 100vh;
+            width: 100%;
+            background-image: url('./assets/images/tunisia_palestine.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            overflow: hidden;
+            position: relative;
+            background-size: cover;
+        }
+
+        .text {
+            background: transparent;
+            position: absolute;
+            top: 50%;
+            color: #fff;
+            font-size: 25px;
+            font-weight: bold;
+            left: 50%;
+            text-align: center;
+            transform: translate(-50%, -50%);
+        }
+
+        p {
+            background: transparent;
+        }
     </style>
 </head>
 <script>
+    function loader() {
+        document.querySelector('.preloader').classList.add("enter_pre");
+    }
 
-function loader() {
-    document.querySelector('.preloader').classList.add("enter_pre");
-}
+    function fadeout() {
+        setInterval(loader, 1);
+    }
 
-function fadeout() {
-    setInterval(loader, 4000);
-}
+    window.onload = fadeout();
 
-window.onload = fadeout();
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.navbar');
+        header.classList.toggle('sticky', window.scrollY > 20);
+    });
 </script>
+
 <body>
-    <?php if (empty($template)) : ?>
-        <div class="preloader">
-            <div class="content-preloader">
-                <img src="./assets/images/boycott.png" alt="boycott">
-            </div>
+    <div class="preloader">
+        <div class="content-preloader">
+            <img src="./assets/images/boycott.png" alt="boycott">
         </div>
+    </div>
+    <nav class="navbar fixed-top">
+        <div class="container">
+        <?php if (empty($template)) : ?>
+            <img src="./assets/images/boycott.png" class="logo" alt="boycott">
+        <?php else :?>
+            <img src="../assets/images/boycott.png" class="logo" alt="boycott">
+         <?php endif ?>
+          <div class="d-flex">
+                <button class="btn btn-outline-secondary">Login</button>
+           </div>
+        </div>
+    </nav>
+    <?php if (empty($template)) : ?>
+
         <div>
-            hello user
+            <div class="section">
+                <div class="text">
+                    <p>Support Palestine. Boycott Israel
+                    </p>
+                    <p> Stand with the Palestinians in their struggle for freedom, justice, and equality. Whilst our governments financially support the apartheid state, we don't have to.</p>
+                    <a href="./ListCategory/">
+                        <button class="btn btn-dark">
+                            Browse Category
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div class="container">
+                <footer class="d-flex flex-wrap justify-content-between align-items-center my-4 border-top">
+                    <div class="col-md-12 d-flex  justify-content-center align-items-center">
+                        <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2024 Boycott, Inc</span>
+                    </div>
+                </footer>
+            </div>
         </div>
     <?php else : ?>
         <?php include $template . '.phtml' ?>
