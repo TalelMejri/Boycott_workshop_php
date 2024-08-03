@@ -1,0 +1,119 @@
+<style>
+    .hidden {
+        display: none;
+    }
+    .input-group-text {
+            background-color: #f8f9fa;
+            border: none;
+        }
+        .input-group-text .fa {
+            color: #17a2b8; /* Blue color for icons */
+            animation: glow 1.5s infinite alternate;
+        }
+        .input-group-text .fa-eye, .input-group-text .fa-eye-slash {
+            color: #28a745; /* Green color for visibility icons */
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 5px #fff, 0 0 10px #17a2b8, 0 0 15px #17a2b8, 0 0 20px #17a2b8, 0 0 25px #17a2b8;
+            }
+            100% {
+                text-shadow: 0 0 10px #fff, 0 0 20px #17a2b8, 0 0 30px #17a2b8, 0 0 40px #17a2b8, 0 0 50px #17a2b8;
+            }
+        }
+        .form-check-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <div class="mt-5 py-5">
+        <div class="d-flex justify-content-center">
+            <div class="col-xl-10">
+                <div class="row shadow-lg rounded">
+                    <div class="col-lg-6 py-2 text-center">
+                        <h1 class="mb-2 py-3 fw-bolder " >Login</h1>
+                        <form action="index.php" method="post" class="py-5">
+                            <?php if(array_key_exists('global',$errors)): ?>
+                                <div class="alert alert-danger">
+                                    <?php echo $errors['global'] ;?>
+                                </div>
+                                <?php endif; ?>
+                            <div class="mb-2 input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                </div>
+                                <input type="email" name="email" placeholder="Email" class="form-control <?= array_key_exists("email", $errors) ? 'is-invalid' : '' ?>" value="<?=$email?>">
+                                
+                            </div>
+                            <small class="text-danger"><?= array_key_exists("email", $errors) ? $errors['email'] : '' ?></small>
+                            <div class="mb-2 input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </div>
+                                <input type="password" name="password" class="form-control pwd <?= array_key_exists("password", $errors) ? 'is-invalid' : '' ?>" placeholder="****** " value="<?=$password?>">
+                                
+                                <div class="input-group-append">
+                                    <button type="button" class="chnage_visibility input-group-text">
+                                        <span class="eye hidden">
+                                            <i class="fas fa-eye"></i>
+                                        </span>
+                                        <span class="eyeoff">
+                                            <i class="fas fa-eye-slash"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                            <small class="text-danger"><?= array_key_exists("password", $errors) ? $errors['password'] : '' ?></small>
+                         
+                            <div>
+                                <button name="submit" type="submit" class="btn btn-success signup">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-6 d-lg-block d-none">
+                        <lottie-player src="https://lottie.host/3ac3785e-348e-41af-9666-e37049f1a0e5/Knvx5bgb4w.json" speed="1" loop autoplay style="width: 100%; height: 100%;"></lottie-player>
+                       <img src="../assets/images/Sign up.gif">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+<script>
+    let pwd = document.querySelector('.pwd');
+    let eye = document.querySelector('.eye');
+    let eyeoff = document.querySelector('.eyeoff');
+    let chnage_visibility = document.querySelector('.chnage_visibility');
+    chnage_visibility.addEventListener('click', () => {
+        if ((pwd.type) == "password") {
+            pwd.type = "text";
+            eye.classList.remove('hidden');
+            eyeoff.classList.add('hidden');
+        } else {
+            pwd.type = "password";
+            eyeoff.classList.remove('hidden');
+            eye.classList.add('hidden');
+        }
+    })
+
+   
+</script>

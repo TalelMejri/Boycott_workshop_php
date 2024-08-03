@@ -123,12 +123,18 @@
             <?php else : ?>
                 <img src="../assets/images/boycott.png" class="logo" alt="boycott">
             <?php endif ?>
-            <div class="d-flex">
-                <button class="btn btn-outline-secondary">Login</button>
-                <a href="./signup/" style="text-decoration: none;" class="mx-2">
-                    <button class="btn btn-secondary">Signup</button>
+            <?php if (array_key_exists('iduser', $_SESSION)) : ?>
+                <a href="./logout.php" style="text-decoration: none;" class="mx-2">
+                    <button class="btn btn-secondary">logout</button>
                 </a>
-            </div>
+            <?php else : ?>
+                <div class="d-flex">
+                    <a href="./login/" style="text-decoration: none;" class="mx-2"><button class="btn btn-outline-secondary">Login</button></a>
+                    <a href="./signup/" style="text-decoration: none;" class="mx-2">
+                        <button class="btn btn-secondary">Signup</button>
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
     </nav>
     <?php if (empty($template) && !$show) : ?>

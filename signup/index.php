@@ -14,7 +14,7 @@ $password = "";
 if (isset($_POST['submit'])) {
 
     $date = date('Y-m-d');
-    $token = md5($email) . mt_rand(999, 999999);
+    $token = md5($email) . mt_rand(999, 999999);//token pour la verification de l'email
     $verified = 0;
 
     $nom = $_POST['nom'];
@@ -57,9 +57,11 @@ if (isset($_POST['submit'])) {
                 "token" => $token,
                 "date_creation" => $date
             ]);
+
             $link = "<a href='http://localhost/Boycott/VerifiedAccount/index.php?email=" . $email . "&token=" . $token . "&name=".$nom."'>
                 Click And Verify Email
             </a>";
+
             sendmail("BoycottTeam", $email, "LIEN DE VERIFICATION", "Cliquez sur ce lien pour vérifier l'e-mail'.$link.'");
             header("location:../index.php?message=User Added");
         } else {
