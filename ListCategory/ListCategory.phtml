@@ -1,1 +1,23 @@
-LIstCATEGORY
+<a href="../AddCategory/index.php">
+    <button>Add</button>
+</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($category as $val): ?>
+            <tr>
+                <td><?= $val['nom'] ?></td>
+                <td>
+                    <img width="100px" height="100px" src="../Storage/<?= $val['image'] ?>">
+                </td>
+            </tr>
+
+        <?php endforeach; ?>
+    </tbody>
+</table>

@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
                 $_SESSION['prenom']=$user['prenom'];
                 $_SESSION['iduser']=$user['id'];
                 $_SESSION['email']=$user['email'];
-                header("location:../index.php");
+                header("location:../ListCategory/index.php");
             }else{
                 $errors['global']="Email Or  Password Inccorect";
             }
@@ -42,8 +42,6 @@ if (isset($_POST['submit'])) {
         }
     }
 }
-
-
 
 $page_titel = "Login";
 $template = "login";
